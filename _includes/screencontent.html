@@ -24,6 +24,7 @@
                     $(".videoContainer").removeClass("hidden");
                     $(".screenvideo").append('<source src="{{ site.github.baseurl }}{{ file.path }}" type="video/mp4">');
                     $(".screenvideo").attr("autoplay", "autoplay");
+                    $(".screenvideo").attr("muted", "muted");
                     $(".screenvideo").removeAttr("controls");
                     console.log("{{ file.path }}");
                 });
