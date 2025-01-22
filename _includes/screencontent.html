@@ -19,15 +19,35 @@
             </script>
         {% endunless %}
         {% if file.extname == ".mov" or file.extname == ".mp4" %}
-            <script>
-                $(function() {
-                    $(".videoContainer").removeClass("hidden");
-                    $(".screenvideo").append('<source src="{{ site.github.baseurl }}{{ file.path }}" type="video/mp4">');
-                    $(".screenvideo").attr("autoplay", "autoplay");
-                    $(".screenvideo").attr("controls", "false");
-                    console.log("{{ file.path }}");
+        <script>
+            $(function () {
+                // Make the video container visible
+                $(".videoContainer").removeClass("hidden");
+        
+                // Dynamically append the video source
+                $(".screenvideo").append(
+                    `<source src="{{ site.github.baseurl }}{{ file.path }}" type="video/mp4">`
+                );
+        
+                // Set video attributes
+                $(".screenvideo")
+                    .prop("autoplay", true)  // Correctly sets autoplay
+                    .prop("muted", true)    // Ensures video can autoplay due to muted audio
+                    .prop("playsinline", true) // Allows inline playback on mobile
+                    .prop("loop", true)     // Enable looping
+                    .removeAttr("controls"); // Hides the controls
+        
+                // Programmatically trigger play for strict browsers
+                const videoElement = $(".screenvideo").get(0);
+                videoElement.play().catch((error) => {
+                    console.error("Autoplay failed due to browser policies:", error);
                 });
-            </script>
+        
+                // Debug: Log the video file path
+                console.log("Video path:", "{{ site.github.baseurl }}{{ file.path }}");
+            });
+        </script>
+        
         {% elsif file.extname == ".ogg" %}
             <script>
                 $(function() {
@@ -46,5 +66,4 @@
         </script>
         {% endif %}
     {% endif %}
-{% endfor %} %}
 {% endfor %}
