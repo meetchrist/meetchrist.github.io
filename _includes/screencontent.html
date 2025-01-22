@@ -23,6 +23,8 @@
                 $(function() {
                     $(".videoContainer").removeClass("hidden");
                     $(".screenvideo").append('<source src="{{ site.github.baseurl }}{{ file.path }}" type="video/mp4">');
+                    $(".screenvideo").attr("autoplay", "autoplay");
+                    $(".screenvideo").attr("controls", "false");
                     console.log("{{ file.path }}");
                 });
             </script>
@@ -31,6 +33,8 @@
                 $(function() {
                     $(".videoContainer").removeClass("hidden");
                     $(".screenvideo").append('<source src="{{ site.github.baseurl }}{{ file.path }}" type="video/ogg">');
+                    $(".screenvideo").attr("autoplay", "autoplay");
+                    $(".screenvideo").attr("controls", "false");
                     console.log("{{ file.path }}");
                 });
             </script>
