@@ -1,3 +1,9 @@
+---
+layout: page
+title: Impressum
+include_in_header: false
+---
+
 # Impressum
 
 ## Gesamtverantwortung
